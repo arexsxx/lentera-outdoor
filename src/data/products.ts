@@ -14,7 +14,7 @@ export const products: Product[] = [
     description: "Tenda dome ringan dan tahan air, cocok untuk keluarga.",
     category: "Tenda",
     pricePerDay: 35000,
-    image: "/assets/logo2.png",
+    image: "/images/products/tenda.png",
   },
   {
     id: 2,
@@ -22,7 +22,7 @@ export const products: Product[] = [
     description: "Sepatu gunung anti slip dengan sol karet tebal.",
     category: "Sepatu",
     pricePerDay: 25000,
-    image: "/assets/logo2.png",
+    image: "/images/products/sepatu.png",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ export const products: Product[] = [
     description: "Tas gunung ukuran medium, nyaman di punggung.",
     category: "Backpack",
     pricePerDay: 20000,
-    image: "/assets/logo2.png",
+    image: "/images/products/carier.png",
   },
   {
     id: 4,
@@ -38,7 +38,7 @@ export const products: Product[] = [
     description: "Kompor lipat praktis untuk masak di alam.",
     category: "Cook",
     pricePerDay: 10000,
-    image: "/assets/logo2.png",
+    image: "/images/products/kompor.png",
   },
   {
     id: 5,
@@ -46,7 +46,7 @@ export const products: Product[] = [
     description: "Lampu kepala terang dengan baterai awet.",
     category: "Emergency",
     pricePerDay: 5000,
-    image: "/assets/logo2.png",
+    image: "/images/logo.png",
   },
   {
     id: 6,
@@ -54,7 +54,7 @@ export const products: Product[] = [
     description: "Panci dan wajan ringan khusus outdoor.",
     category: "Cook",
     pricePerDay: 15000,
-    image: "/assets/logo2.png",
+    image: "/images/products/nesting.png",
   },
   {
     id: 7,
@@ -62,7 +62,7 @@ export const products: Product[] = [
     description: "Tenda dome praktis dan ringan untuk 2 orang.",
     category: "Tenda",
     pricePerDay: 20000,
-    image: "/assets/logo2.png",
+    image: "/images/products/tenda.png",
   },
   {
     id: 8,
@@ -70,6 +70,14 @@ export const products: Product[] = [
     description: "Alas tidur tebal dan empuk.",
     category: "Emergency",
     pricePerDay: 5000,
-    image: "/assets/logo2.png",
+    image: "/images/products/matras.png",
+  },
+    {
+    id: 9,
+    name: "Lampu Tenda",
+    description: "Lampu tenda LED dengan baterai awet.",
+    category: "Emergency",
+    pricePerDay: 5000,
+    image: "/images/products/lampu-tenda.png",
   }
 ];

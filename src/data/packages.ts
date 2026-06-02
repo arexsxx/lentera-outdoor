@@ -10,7 +10,7 @@ export const packages: Package[] = [
   {
     id: 1,
     name: "Keluarga 6 Orang",
-    image: "/assets/logo2.png",
+    image: "/images/logo.png",
     price: 150000,
     items: [
       "Tenda Kapasitas 6 Orang",
@@ -27,7 +27,7 @@ export const packages: Package[] = [
   {
     id: 2,
     name: "Kelompok 4 Orang",
-    image: "/assets/logo2.png",
+    image: "/images/logo.png",
     price: 100000,
     items: [
       "Tenda Kapasitas 4 Orang",
@@ -42,7 +42,7 @@ export const packages: Package[] = [
   {
     id: 3,
     name: "Pasangan 2 Orang",
-    image: "/assets/logo2.png",
+    image: "/images/logo.png",
     price: 60000,
     items: [
       "Tenda Kapasitas 2 Orang",

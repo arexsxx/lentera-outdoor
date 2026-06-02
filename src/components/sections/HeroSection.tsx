@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { ArrowRight, BookOpen,  } from "lucide-react";
 
 export default function HeroSection() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -31,7 +32,7 @@ export default function HeroSection() {
       <div className="absolute bottom-0 left-0 right-0 h-24 md:h-36 bg-white z-0" />
 
       {/* ─── MAIN STACK (fixed height, everything overlaps inside) ─── */}
-      <div className="relative mx-auto max-w-[1280px] px-4 lg:px-14" style={{ height: "clamp(480px, 80vh, 800px)" }}>
+      <div className="relative mx-auto max-w-[1440px] px-[56px]" style={{ height: "clamp(480px, 80vh, 800px)" }}>
 
         {/* 1. GIANT HEADING — top, behind everything */}
         <div className="absolute top-8 md:top-12 left-0 right-0 text-center z-10 pointer-events-none">
@@ -83,18 +84,18 @@ export default function HeroSection() {
         </div>
 
         {/* 4. BUTTONS — z-40, in FRONT of the person */}
-        <div className="absolute left-0 right-0 flex justify-center gap-3 z-40" style={{ bottom: "calc(clamp(200px, 35vh, 360px) / 2 - 22px)" }}>
-          <Button
-            asChild
-            className="rounded-xl bg-white/90 hover:bg-white text-brand-orange px-6 md:px-8 h-11 md:h-12 text-sm md:text-base font-bold font-body shadow-md"
-          >
-            <Link href="/catalog">Lihat Katalog</Link>
+        <div className="absolute left-0 right-0 flex justify-center gap-6 z-40" style={{ bottom: "calc(clamp(200px, 35vh, 360px) / 2 - 22px)" }}>
+          <Button asChild variant="secondary" size="lg">
+            <Link href="/catalog">
+              <BookOpen data-icon="inline-start" />
+              Lihat Katalog
+            </Link>
           </Button>
-          <Button
-            asChild
-            className="rounded-xl bg-brand-orange hover:bg-brand-orange-dark text-white px-6 md:px-8 h-11 md:h-12 text-sm md:text-base font-bold font-body shadow-md"
-          >
-            <Link href="/sewa">Mulai Sewa</Link>
+          <Button asChild size="lg">
+            <Link href="/sewa">
+              Mulai Sewa
+              <ArrowRight data-icon="inline-end" />
+            </Link>
           </Button>
         </div>
 

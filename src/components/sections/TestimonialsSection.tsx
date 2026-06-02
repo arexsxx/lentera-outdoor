@@ -14,7 +14,7 @@ export default function TestimonialsSection() {
 
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto max-w-[1440px] px-[56px]">
 
         <div className="flex items-start justify-between mb-10">
           <div>

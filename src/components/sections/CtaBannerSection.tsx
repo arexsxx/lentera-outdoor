@@ -13,7 +13,7 @@ export default function CtaBannerSection() {
       </div>
 
       {/* Konten */}
-      <div className="relative z-10 container mx-auto px-4 text-center text-white">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-[56px] text-center text-white">
         <h2 className="text-4xl md:text-5xl font-black leading-tight">
           Siap Memulai
           <br />

@@ -5,13 +5,13 @@ import { AtSign, Phone, MapPin } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-brand-dark text-white py-12">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto max-w-[1440px] px-[56px]">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 
           {/* Kolom 1: About */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <Image src="/assets/logo2.png" alt="Lentera" width={28} height={28} />
+              <Image src="/images/logo-white.png" alt="Lentera" width={28} height={28} />
               <div>
                 <p className="font-bold text-sm">LENTERA</p>
                 <p className="text-xs text-gray-400">Outdoor</p>

@@ -6,7 +6,7 @@ import { packages } from "@/data/packages";
 export default function PackagesSection() {
   return (
     <section className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+      <div className="mx-auto max-w-[1440px] px-[56px]">
 
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold">Paket Hemat & Praktis</h2>
@@ -24,7 +24,7 @@ export default function PackagesSection() {
             >
               {/* Foto Paket */}
               <div className="relative h-48 bg-gray-200">
-                <Image src={pkg.image} alt={pkg.name} fill className="object-cover" />
+                <Image src={pkg.image} alt={pkg.name} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" />
               </div>
 
               {/* Detail */}

@@ -1,60 +1,77 @@
 import Image from "next/image";
 import { Package, Sparkles, Clock, Star } from "lucide-react";
+import { WhyCard } from "@/components/ui/why-card";
 
 const features = [
   {
     icon: Package,
     title: "Pilihan Alat Terlengkap",
-    desc: "Tersedia berbagai perlengkapan untuk hiking, camping, mendaki gunung dari berbagai kategori.",
+    desc: "Mulai dari tenda, carrier, hingga alat masak dan sepatu gunung, temukan berbagai perlengkapan dari merek andalan untuk segala rute pendakianmu.",
   },
   {
     icon: Sparkles,
     title: "Bersih & Terawat Sempurna",
-    desc: "Setiap alat dibersihkan dan dicek sebelum dipinjamkan, sehingga kamu selalu mendapat peralatan prima.",
+    desc: "Setiap barang selalu dipastikan kelayakannya, dicek, dan dicuci bersih setelah dipakai. Kamu bisa langsung fokus muncak tanpa khawatir soal alat rusak.",
   },
   {
     icon: Clock,
     title: "Durasi Sewa Fleksibel",
-    desc: "Tentukan sendiri berapa hari kamu membutuhkan peralatan. Harga yang kompetitif dan transparan.",
+    desc: "Hitungan sewa harian yang mudah disesuaikan dengan jadwalmu. Sangat cocok untuk camping ceria akhir pekan maupun ekspedisi panjang berhari-hari.",
   },
   {
     icon: Star,
     title: "Rekomendasi Tepat",
-    desc: "Bingung butuh apa? Tim kami siap membantu merekomendasikan perlengkapan sesuai destinasimu.",
+    desc: "Bingung butuh alat kapasitas berapa? Tim kami siap membantu merekomendasikan perlengkapan yang paling pas dengan destinasi dan jumlah rombonganmu.",
   },
 ];
 
 export default function WhyUsSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+      <div className="mx-auto max-w-[1440px] px-[56px]">
+        <div className="flex items-start gap-12">
 
           {/* Gambar Kiri */}
-          <div className="relative h-[400px] rounded-3xl overflow-hidden bg-gray-200">
+          <div className="relative w-[518px] h-[668px] rounded-[20px] overflow-hidden bg-gray-200 -ml-[56px] flex-shrink-0">
+            <Image
+              src="/images/whyimg.jpg"
+              alt="Kenapa Memilih Lentera Outdoor"
+              fill
+              sizes="518px"
+              className="object-cover"
+            />
           </div>
 
           {/* Konten Kanan */}
-          <div>
-            <h2 className="text-3xl font-bold mb-2">
-              Kenapa Memilih Lentera Outdoor?
-            </h2>
-            <p className="text-muted-foreground mb-8">
-              Peralatan terawat dan layanan terpercaya kami siap membuat setiap
-              perjalanan alammu lebih aman, nyaman, dan berkesan.
-            </p>
+          <div className="flex-1 min-w-0 flex flex-col justify-start gap-14">
 
-            <div className="grid grid-cols-2 gap-6">
-              {features.map((f) => (
-                <div key={f.title} className="flex flex-col gap-2">
-                  <div className="w-10 h-10 rounded-xl bg-orange-50 flex items-center justify-center">
-                    <f.icon className="w-5 h-5 text-brand-orange" />
-                  </div>
-                  <h3 className="font-semibold text-sm">{f.title}</h3>
-                  <p className="text-xs text-muted-foreground">{f.desc}</p>
-                </div>
-              ))}
+            {/* Header */}
+            <div className="flex flex-col gap-3">
+              <h2 className="text-5xl font-medium font-display leading-[57.60px]">
+                Kenapa Memilih Lentera Outdoor?
+              </h2>
+              <p className="text-[#676B6C] text-xl font-normal font-body leading-6">
+                Peralatan terawat dan layanan terpercaya kami siap membuat setiap
+                perjalanan alammu lebih aman, nyaman, dan berkesan.
+              </p>
             </div>
+
+            {/* Cards */}
+            <div className="flex flex-col gap-11">
+              {/* Baris 1 */}
+              <div className="flex gap-11">
+                {features.slice(0, 2).map((f) => (
+                  <WhyCard key={f.title} icon={f.icon} title={f.title} description={f.desc} />
+                ))}
+              </div>
+              {/* Baris 2 */}
+              <div className="flex gap-11">
+                {features.slice(2, 4).map((f) => (
+                  <WhyCard key={f.title} icon={f.icon} title={f.title} description={f.desc} />
+                ))}
+              </div>
+            </div>
+
           </div>
 
         </div>

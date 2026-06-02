@@ -11,7 +11,7 @@ const brands = [
 export default function BrandSection() {
   return (
     <section className="py-16 bg-white">
-      <div className="mx-auto max-w-[1280px] px-4 lg:px-14 flex flex-col items-center gap-10">
+      <div className="mx-auto max-w-[1440px] px-[56px] flex flex-col items-center gap-10">
 
         {/* Title — Figma: text-5xl font-medium font-Outfit */}
         <h2 className="text-center text-foreground text-5xl font-medium font-display leading-[57.60px]">
