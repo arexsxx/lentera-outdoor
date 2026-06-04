@@ -9,15 +9,15 @@ interface ProductCardProps {
 
 export function ProductCard({ image, title, description, price }: ProductCardProps) {
   return (
-    <div className="w-full h-full px-3 py-6 bg-slate-50 rounded-[20px] flex flex-col justify-between items-center gap-5 shadow-sm hover:shadow-xl transition-shadow duration-700 ease-in-out">
+    <div className="w-full h-full px-3 py-6 bg-slate-50 hover:bg-slate-100 rounded-[20px] flex flex-col justify-between items-center gap-5 transition-colors duration-300">
       <div className="self-stretch flex flex-col justify-center items-center gap-3">
-        <div className="relative w-full aspect-square max-w-[224px]">
+        <div className="group/img relative w-full aspect-square max-w-[224px] overflow-hidden">
           <Image
             src={image}
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 224px"
-            className="object-contain"
+            className="object-contain transition-transform duration-500 ease-out group-hover/img:scale-110"
           />
         </div>
         <div className="self-stretch flex flex-col justify-start items-start gap-1">

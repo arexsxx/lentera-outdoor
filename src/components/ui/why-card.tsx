@@ -8,9 +8,9 @@ interface WhyCardProps {
 
 export function WhyCard({ icon: Icon, title, description }: WhyCardProps) {
   return (
-    <div className="p-4 bg-slate-50 rounded-[20px] inline-flex flex-col justify-start items-start gap-9 w-full">
+    <div className="group p-4 bg-slate-50 hover:bg-slate-100 rounded-[20px] inline-flex flex-col justify-start items-start gap-9 w-full transition-colors duration-300 cursor-default">
       {/* Icon */}
-      <div className="size-12 flex items-center justify-center rounded-xl bg-brand-orange/10 flex-shrink-0">
+      <div className="size-12 flex items-center justify-center rounded-xl bg-brand-orange/10 group-hover:bg-brand-orange/20 flex-shrink-0 transition-colors duration-300">
         <Icon className="size-6 text-brand-orange" />
       </div>
 
