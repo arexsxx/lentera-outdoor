@@ -1,62 +1,81 @@
 "use client";
-import { useState } from "react";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { testimonials } from "@/data/testimonials";
+import { ReviewCard } from "@/components/ui/review-card";
+import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
 
 export default function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-
-  const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
-  const next = () => setCurrent((c) => (c + 1) % testimonials.length);
-
-  // Tampilkan 4 testimoni per slide (bisa digeser)
-  const visible = testimonials.slice(current, current + 4);
+  // Komponen Helper untuk satu set kartu (menjamin jarak gap konsisten saat di-loop)
+  const TestimonialSet = () => (
+    <div className="flex gap-6 pr-6">
+      {testimonials.map((t, i) => (
+        <div key={i} className="w-[300px] md:w-[350px] flex-shrink-0">
+          <ReviewCard
+            name={t.name}
+            review={t.review}
+            rating={t.rating}
+          />
+        </div>
+      ))}
+    </div>
+  );
 
   return (
-    <section className="py-16 bg-white">
-      <div className="mx-auto max-w-[1440px] px-[56px]">
+    <section className="py-16 bg-transparent overflow-hidden">
+      
+      {/* Inline Styles untuk animasi Infinite Scroll Marquee */}
+      <style>{`
+        @keyframes marquee {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+          animation: marquee 40s linear infinite;
+        }
+        .animate-marquee:hover {
+          /* Opsional: Berhenti saat disentuh mouse agar mudah dibaca */
+          animation-play-state: paused;
+        }
+      `}</style>
 
-        <div className="flex items-start justify-between mb-10">
-          <div>
-            <h2 className="text-3xl font-bold">Apa yang sobat Lentera katakan</h2>
-            <p className="text-muted-foreground mt-2 max-w-sm">
-              Dipercaya oleh para pendaki dan keluarga untuk merasakan momen terbaik di alam.
-            </p>
-          </div>
-          <div className="flex gap-2 mt-2">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:border-brand-orange hover:text-brand-orange transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full bg-brand-orange text-white flex items-center justify-center hover:bg-brand-orange-dark transition-colors"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
+      <div className="mx-auto max-w-[1440px] px-[56px] relative">
+        {/* Heading disesuaikan dengan gaya ProductsSection */}
+        <div className="flex flex-col items-center justify-center text-center mb-10 mx-auto">
+          <h2 className="max-w-[828px] text-foreground text-5xl font-medium font-display leading-[57.60px]">
+            Apa kata sobat Lentera
+          </h2>
+          <p className="max-w-[774px] text-[#676B6C] text-lg font-normal font-body leading-6 mt-2">
+            Dipercaya oleh para pendaki dan keluarga untuk merasakan momen terbaik di alam.
+          </p>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          {visible.map((t, i) => (
-            <div key={i} className="border rounded-2xl p-5 bg-white hover:shadow-md transition-shadow">
-              <div className="flex gap-1 mb-3">
-                {Array.from({ length: 5 }).map((_, si) => (
-                  <Star
-                    key={si}
-                    className={`w-4 h-4 ${si < t.rating ? "text-yellow-400 fill-yellow-400" : "text-gray-200"}`}
-                  />
-                ))}
-              </div>
-              <p className="text-sm text-gray-700 line-clamp-4">"{t.review}"</p>
-              <p className="mt-4 font-semibold text-sm text-brand-orange">{t.name}</p>
-            </div>
-          ))}
-        </div>
-
       </div>
+
+      {/* Area Marquee yang meluber ke layar */}
+      <div className="relative w-full flex overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)] pb-8 pt-4">
+        {/* Lebar w-max memastikan isinya memanjang ke kanan */}
+        <div className="flex w-max animate-marquee">
+          {/* Kita pasang 4 set agar sangat panjang menutupi layar PC sekalipun */}
+          <TestimonialSet />
+          <TestimonialSet />
+          <TestimonialSet />
+          <TestimonialSet />
+        </div>
+      </div>
+
+      {/* Call to Action (CTA) */}
+      <div className="flex justify-center mt-6">
+        <Button size="lg" className="gap-2 rounded-full px-8" asChild>
+          <a 
+            href="https://www.google.com/maps/search/?api=1&query=Lentera+Outdoor+Krandang+Kediri" 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <MapPin className="w-4 h-4" />
+            Tulis Ulasan di Google Maps
+          </a>
+        </Button>
+      </div>
+
     </section>
   );
 }
