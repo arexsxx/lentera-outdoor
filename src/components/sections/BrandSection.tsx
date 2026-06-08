@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { AbstractBackground } from "@/components/ui/abstract-background";
 
 const brands = [
   { name: "Greenforest",  logo: "/images/brands/greenforest.png" },
@@ -10,26 +11,27 @@ const brands = [
 
 export default function BrandSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="mx-auto max-w-[1440px] px-[56px] flex flex-col items-center gap-10">
+    <section className="relative py-16 bg-white overflow-hidden">
+      <AbstractBackground />
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px] flex flex-col items-center gap-10">
 
         {/* Title — Figma: text-5xl font-medium font-Outfit */}
-        <h2 className="text-center text-foreground text-5xl font-medium font-display leading-[57.60px]">
-          Our Rent Product
+        <h2 className="text-center text-foreground text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
+          Brand Terpercaya
         </h2>
 
-        {/* Logo Row — Figma: w-52 h-20 rounded-xl gap-9 */}
-        <div className="flex flex-row items-center gap-6 w-full">
+        {/* Logo Row — Wrap on mobile so they don't squish */}
+        <div className="flex flex-wrap justify-center items-center gap-6 md:gap-10 w-full max-w-4xl">
           {brands.map((brand) => (
             <div
               key={brand.name}
-              className="relative flex-1 h-20 rounded-xl overflow-hidden"
+              className="relative w-24 h-12 md:w-32 md:h-16 rounded-xl overflow-hidden"
             >
               <Image
                 src={brand.logo}
                 alt={brand.name}
                 fill
-                sizes="20vw"
+                sizes="(max-width: 768px) 100px, 150px"
                 className="object-contain"
               />
             </div>

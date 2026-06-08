@@ -1,6 +1,7 @@
 "use client";
 import { testimonials } from "@/data/testimonials";
 import { ReviewCard } from "@/components/ui/review-card";
+import { AbstractBackground } from "@/components/ui/abstract-background";
 import { Button } from "@/components/ui/button";
 import { MapPin } from "lucide-react";
 
@@ -21,7 +22,8 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="py-16 bg-transparent overflow-hidden">
+    <section className="relative py-20 bg-white overflow-hidden">
+      <AbstractBackground />
       
       {/* Inline Styles untuk animasi Infinite Scroll Marquee */}
       <style>{`
@@ -38,10 +40,10 @@ export default function TestimonialsSection() {
         }
       `}</style>
 
-      <div className="mx-auto max-w-[1440px] px-[56px] relative">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px] relative">
         {/* Heading disesuaikan dengan gaya ProductsSection */}
         <div className="flex flex-col items-center justify-center text-center mb-10 mx-auto">
-          <h2 className="max-w-[828px] text-foreground text-5xl font-medium font-display leading-[57.60px]">
+          <h2 className="max-w-[828px] text-foreground text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
             Apa kata sobat Lentera
           </h2>
           <p className="max-w-[774px] text-[#676B6C] text-lg font-normal font-body leading-6 mt-2">

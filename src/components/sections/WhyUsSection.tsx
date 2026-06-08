@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Package, Sparkles, Clock, Star } from "lucide-react";
 import { WhyCard } from "@/components/ui/why-card";
+import { AbstractBackground } from "@/components/ui/abstract-background";
 
 const features = [
   {
@@ -27,18 +28,19 @@ const features = [
 
 export default function WhyUsSection() {
   return (
-    <section className="py-16 bg-white">
-      <div className="mx-auto max-w-[1440px] px-[56px]">
-        <div className="flex items-start gap-12">
+    <section className="relative py-16 bg-white overflow-hidden">
+      <AbstractBackground />
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px]">
+        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
 
           {/* Gambar Kiri */}
-          <div className="relative w-[518px] h-[668px] rounded-[20px] overflow-hidden bg-gray-200 -ml-[56px] flex-shrink-0">
+          <div className="group relative w-full lg:w-[518px] aspect-[4/5] lg:h-[668px] rounded-[20px] overflow-hidden bg-gray-200 lg:-ml-[56px] flex-shrink-0 shadow-lg">
             <Image
               src="/images/whyimg.jpg"
               alt="Kenapa Memilih Lentera Outdoor"
               fill
               sizes="518px"
-              className="object-cover"
+              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </div>
 
@@ -46,8 +48,8 @@ export default function WhyUsSection() {
           <div className="flex-1 min-w-0 flex flex-col justify-start gap-14">
 
             {/* Header */}
-            <div className="flex flex-col gap-3">
-              <h2 className="text-5xl font-medium font-display leading-[57.60px]">
+            <div className="flex flex-col gap-3 text-center lg:text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
                 Kenapa Memilih Lentera Outdoor?
               </h2>
               <p className="text-[#676B6C] text-xl font-normal font-body leading-6">

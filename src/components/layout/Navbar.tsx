@@ -10,16 +10,16 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Catalog", href: "/catalog" },
-  { label: "Riviews", href: "/review" },
+  { label: "Reviews", href: "/review" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="absolute top-0 z-50 w-full" style={{ backgroundColor: "#CDD6D8" }}>
+    <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm transition-all duration-300">
       {/* height ~94px sesuai Figma, padding ~80px kiri-kanan */}
-      <div className="mx-auto max-w-[1440px] px-[56px] h-[94px] flex items-center justify-between">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px] h-[94px] flex items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
@@ -59,8 +59,8 @@ export default function Navbar() {
         {/* CTA Button */}
         <div className="flex items-center gap-3">
           <Button
-            className="hidden md:flex h-12 px-8 rounded-xl border border-foreground bg-transparent text-foreground text-base font-bold font-body hover:border-brand-orange hover:text-brand-orange hover:bg-transparent"
-            variant="outline"
+            className="hidden md:flex rounded-full font-bold"
+            size="lg"
           >
             Sewa sekarang
           </Button>
@@ -68,7 +68,7 @@ export default function Navbar() {
           {/* Hamburger Mobile */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
+              <Button variant="ghost" size="icon" className=" md:hidden">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -87,8 +87,8 @@ export default function Navbar() {
                   );
                 })}
                 <Button
-                  className="mt-6 rounded-lg border border-foreground text-foreground text-base font-medium font-body h-12 hover:bg-foreground hover:text-white"
-                  variant="outline"
+                  className="mt-6 rounded-lg font-medium"
+                  size="lg"
                 >
                   Sewa sekarang
                 </Button>

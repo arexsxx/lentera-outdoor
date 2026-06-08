@@ -19,11 +19,11 @@ export default function ProductsSection() {
 
   return (
     <section className="py-16 bg-transparent">
-      <div className="mx-auto max-w-[1440px] px-[56px]">
+      <div className="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px]">
 
         {/* Heading */}
         <div className="flex flex-col items-center justify-center text-center mb-10 mx-auto">
-          <h2 className="max-w-[828px] text-foreground text-5xl font-medium font-display leading-[57.60px]">
+          <h2 className="max-w-[828px] text-foreground text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
             Pilihan Perlengkapan Terbaik
           </h2>
           <p className="max-w-[774px] text-[#676B6C] text-lg font-normal font-body leading-6 mt-2">
@@ -48,7 +48,7 @@ export default function ProductsSection() {
         </div>
 
         {/* Product Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.slice(0, 8).map((product) => (
             <ProductCard
               key={product.id}
@@ -62,7 +62,7 @@ export default function ProductsSection() {
 
         {/* Load More */}
         <div className="text-center mt-10">
-          <Button size="lg">
+          <Button size="lg" className="rounded-full">
             Lihat Lainnya
             <ArrowRight data-icon="inline-end" />
           </Button>

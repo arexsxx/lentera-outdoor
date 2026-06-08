@@ -46,7 +46,7 @@ export const products: Product[] = [
     description: "Lampu kepala terang dengan baterai awet.",
     category: "Emergency",
     pricePerDay: 5000,
-    image: "/images/logo.png",
+    image: "/images/products/lampu-tenda.png",
   },
   {
     id: 6,

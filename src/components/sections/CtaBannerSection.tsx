@@ -4,44 +4,46 @@ import { Button } from "@/components/ui/button";
 
 export default function CtaBannerSection() {
   return (
-    <section className="relative py-20 overflow-hidden">
-
-      {/* Background */}
+    <section className="relative py-24 overflow-hidden">
+      {/* Background Image & Overlay (Native CSS Parallax) */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-brand-dark" />
-        <div className="absolute inset-0 bg-brand-orange/80" />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-fixed"
+          style={{ backgroundImage: "url('/images/hero-bg.png')" }}
+        />
+        <div className="absolute inset-0 bg-brand-dark/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-orange/80 to-transparent" />
       </div>
 
       {/* Konten */}
-      <div className="relative z-10 mx-auto max-w-[1440px] px-[56px] text-center text-white">
-        <h2 className="text-4xl md:text-5xl font-black leading-tight">
+      <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px] text-center text-white">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight drop-shadow-lg">
           Siap Memulai
           <br />
           Petualanganmu?
         </h2>
-        <p className="mt-4 text-white/90 max-w-md mx-auto">
+        <p className="mt-4 text-white/90 max-w-md mx-auto text-lg drop-shadow-md">
           Lengkapi kebutuhan mendaki dan camping-mu bersama kami. Proses sewa mudah,
           cepat, dan terpercaya.
         </p>
-        <div className="mt-8 flex gap-4 justify-center flex-wrap">
+        <div className="mt-10 flex gap-4 justify-center flex-wrap">
           <Button
             asChild
             size="lg"
-            variant="outline"
-            className="rounded-full border-white text-white bg-transparent hover:bg-white/20 px-8"
+            variant="border-secondary"
+            className="rounded-full border-white/50 text-white bg-white/10 hover:bg-white/20 hover:border-white px-8 transition-all"
           >
             <Link href="/catalog">Lihat Katalog</Link>
           </Button>
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-white text-brand-orange hover:bg-gray-100 px-8 font-bold"
+            className="rounded-full px-8 font-bold"
           >
             <Link href="/sewa">Mulai Sewa</Link>
           </Button>
         </div>
       </div>
-
     </section>
   );
 }

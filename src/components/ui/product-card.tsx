@@ -9,7 +9,7 @@ interface ProductCardProps {
 
 export function ProductCard({ image, title, description, price }: ProductCardProps) {
   return (
-    <div className="w-full h-full px-3 py-6 bg-slate-50 hover:bg-slate-100 rounded-[20px] flex flex-col justify-between items-center gap-5 transition-colors duration-300">
+    <div className="w-full h-full px-3 py-6 bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-orange/30 rounded-[20px] flex flex-col justify-between items-center gap-5 transition-all duration-300">
       <div className="self-stretch flex flex-col justify-center items-center gap-3">
         <div className="group/img relative w-full aspect-square max-w-[224px] overflow-hidden">
           <Image

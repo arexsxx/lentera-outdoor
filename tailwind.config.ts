@@ -16,7 +16,6 @@ const config: Config = {
         },
       },
       fontFamily: {
-        // Font tebal untuk judul besar seperti "LENTERA OUTDOOR"
         display: ["var(--font-display)", "sans-serif"],
         body: ["var(--font-body)", "sans-serif"],
       },
