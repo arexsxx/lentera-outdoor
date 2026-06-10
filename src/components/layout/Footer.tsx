@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="border-t border-white/20 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-white/60">
           <p>© 2025 Lentera Outdoor. All rights reserved.</p>
-          <p>Designed with ❤️ for adventurers</p>
+          <p>Designed by @omcipak.project</p>
         </div>
       </div>
     </footer>

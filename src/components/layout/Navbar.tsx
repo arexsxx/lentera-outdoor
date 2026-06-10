@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -15,6 +17,8 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+  const { setIsCartOpen } = useCart();
 
   return (
     <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm transition-all duration-300">
@@ -59,40 +63,72 @@ export default function Navbar() {
         {/* CTA Button */}
         <div className="flex items-center gap-3">
           <Button
-            className="hidden md:flex rounded-full font-bold"
+            className="hidden md:flex rounded-full font-bold cursor-pointer"
             size="lg"
+            onClick={() => setIsCartOpen(true)}
           >
-            Sewa sekarang
+            Keranjang Sewa
           </Button>
 
           {/* Hamburger Mobile */}
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className=" md:hidden">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6 text-brand-dark-soft" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right">
-              <nav className="flex flex-col gap-6 mt-12">
+            <SheetContent side="right" className="w-[85vw] max-w-[350px] p-0 flex flex-col bg-white/95 backdrop-blur-xl border-l border-white/20">
+              <SheetTitle className="sr-only">Navigasi Mobile</SheetTitle>
+              
+              {/* Mobile Menu Header (Logo) */}
+              <div className="flex items-center gap-2 p-6 border-b border-gray-100">
+                <Image
+                  src="/images/logo.png"
+                  alt="Lentera Outdoor"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10"
+                />
+                <div className="flex flex-col justify-start items-start leading-none">
+                  <span className="text-brand-dark-soft text-[18px] font-bold font-display tracking-wide">LENTERA</span>
+                  <span className="text-gray-500 text-[13px] font-normal font-body">Outdoor</span>
+                </div>
+              </div>
+
+              {/* Mobile Menu Links */}
+              <nav className="flex flex-col px-4 py-6 gap-2">
                 {navLinks.map((link) => {
                   const isActive = pathname === link.href;
                   return (
                     <Link
                       key={link.href}
                       href={link.href}
-                      className={`text-lg font-medium font-body ${isActive ? "text-brand-orange" : "text-foreground"}`}
+                      onClick={() => setIsOpen(false)}
+                      className={`flex items-center px-4 py-3 rounded-xl text-lg font-medium font-body transition-all ${
+                        isActive 
+                          ? "bg-brand-orange/10 text-brand-orange" 
+                          : "text-brand-dark-soft hover:bg-gray-50"
+                      }`}
                     >
                       {link.label}
                     </Link>
                   );
                 })}
-                <Button
-                  className="mt-6 rounded-lg font-medium"
-                  size="lg"
-                >
-                  Sewa sekarang
-                </Button>
               </nav>
+
+              {/* Mobile Menu Footer CTA */}
+              <div className="mt-auto p-6 border-t border-gray-100">
+                <Button
+                  className="w-full rounded-xl font-bold bg-gradient-to-r from-brand-orange to-brand-orange-dark text-white shadow-lg shadow-brand-orange/20 py-6 text-lg"
+                  size="lg"
+                  onClick={() => {
+                    setIsOpen(false);
+                    setIsCartOpen(true);
+                  }}
+                >
+                  Keranjang Sewa
+                </Button>
+              </div>
             </SheetContent>
           </Sheet>
         </div>

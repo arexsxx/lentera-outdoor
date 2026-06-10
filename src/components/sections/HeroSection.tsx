@@ -6,8 +6,10 @@ import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { AbstractBackground } from "@/components/ui/abstract-background";
+import { useCart } from "@/context/CartContext";
 
 export default function HeroSection() {
+  const { setIsCartOpen } = useCart();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
   const [isClient, setIsClient] = useState(false);
@@ -59,7 +61,7 @@ export default function HeroSection() {
         </div>
 
         {/* 2. MOUNTAIN CARD — sits at the bottom, behind person */}
-        <div className="absolute bottom-0 left-4 right-4 lg:left-8 lg:right-8 z-20 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both ease-out min-h-[560px] h-[60vh] max-h-[600px] md:min-h-[280px] md:h-[45vh] md:max-h-[500px]">
+        <div className="absolute bottom-0 left-4 right-4 lg:left-8 lg:right-8 z-20 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-both ease-out min-h-[300px] h-[45vh] max-h-[400px] md:min-h-[280px] md:h-[45vh] md:max-h-[500px]">
           <div className="w-full h-full" style={{ transform: `translateY(${scrollY * 0.15}px)`, willChange: "transform" }}>
             <div className="relative w-full h-full rounded-t-3xl overflow-hidden shadow-[0_0_40px_rgba(255,91,4,0.1)] border-t border-white/50">
               <Image
@@ -98,19 +100,17 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* 4. BUTTONS — z-40, in FRONT of the person */}
-        <div className="absolute left-0 right-0 flex flex-wrap justify-center gap-4 md:gap-6 z-40 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-700 fill-mode-both ease-out bottom-[calc(clamp(560px,60vh,600px)/2_-_28px)] md:bottom-[calc(clamp(280px,45vh,500px)/2_-_28px)]">
-          <Button asChild variant="secondary" size="lg" className="rounded-full font-bold">
+        {/* 4. BUTTONS — z-50, in FRONT of everything */}
+        <div className="absolute left-0 right-0 flex flex-wrap justify-center gap-4 md:gap-6 z-50 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-700 fill-mode-both ease-out bottom-[25vh] md:bottom-[30vh]">
+          <Button asChild variant="secondary" className="rounded-full font-bold bg-white/80 backdrop-blur-md border border-white/50 hover:bg-white text-brand-orange-dark shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all px-8 h-14 text-base md:text-lg">
             <Link href="/catalog">
-              <BookOpen data-icon="inline-start" />
+              <BookOpen data-icon="inline-start" className="w-5 h-5" />
               Lihat Katalog
             </Link>
           </Button>
-          <Button asChild size="lg" className="rounded-full font-bold">
-            <Link href="/sewa">
-              Mulai Sewa
-              <ArrowRight data-icon="inline-end" />
-            </Link>
+          <Button onClick={() => setIsCartOpen(true)} className="rounded-full font-bold bg-gradient-to-r from-brand-orange to-brand-orange-dark hover:from-brand-orange-dark hover:to-brand-orange text-white shadow-[0_8px_30px_rgba(255,91,4,0.4)] hover:shadow-[0_12px_40px_rgba(255,91,4,0.6)] hover:-translate-y-1 transition-all px-8 h-14 text-base md:text-lg border border-brand-orange/50">
+            Mulai Sewa
+            <ArrowRight data-icon="inline-end" className="w-5 h-5 ml-2" />
           </Button>
         </div>
 

@@ -1,36 +1,51 @@
+"use client";
+
 import Image from "next/image";
+import { Product } from "@/data/products";
+import { useCart } from "@/context/CartContext";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 interface ProductCardProps {
-  image: string;
-  title: string;
-  description: string;
-  price: number;
+  product: Product;
 }
 
-export function ProductCard({ image, title, description, price }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const { addToCart } = useCart();
+
   return (
-    <div className="w-full h-full px-3 py-6 bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-orange/30 rounded-[20px] flex flex-col justify-between items-center gap-5 transition-all duration-300">
+    <div className="w-full h-full p-4 bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-orange/30 rounded-[20px] flex flex-col justify-between items-center gap-4 transition-all duration-300 relative group">
       <div className="self-stretch flex flex-col justify-center items-center gap-3">
         <div className="group/img relative w-full aspect-square max-w-[224px] overflow-hidden">
           <Image
-            src={image}
-            alt={title}
+            src={product.image}
+            alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, 224px"
             className="object-contain transition-transform duration-500 ease-out group-hover/img:scale-110"
           />
         </div>
-        <div className="self-stretch flex flex-col justify-start items-start gap-1">
-          <h3 className="self-stretch text-center text-brand-dark-soft text-xl font-semibold font-body leading-6">
-            {title}
+        <div className="self-stretch flex flex-col justify-start items-center gap-1 mt-2">
+          <h3 className="self-stretch text-center text-brand-dark-soft text-xl font-semibold font-body leading-6 line-clamp-1">
+            {product.name}
           </h3>
-          <p className="self-stretch text-center text-[#676B6C] text-sm font-normal font-body leading-tight line-clamp-2">
-            {description}
+          <p className="self-stretch text-center text-[#676B6C] text-sm font-normal font-body leading-tight line-clamp-2 min-h-[36px]">
+            {product.description}
           </p>
         </div>
       </div>
-      <div className="self-stretch text-center text-brand-orange text-sm font-semibold font-body leading-4">
-        Rp {price.toLocaleString("id-ID")}/Day
+      <div className="self-stretch flex flex-col gap-3 w-full mt-2">
+        <div className="text-center text-brand-orange text-sm font-bold font-body">
+          Rp {product.pricePerDay.toLocaleString("id-ID")}<span className="text-gray-400 font-normal text-xs">/Hari</span>
+        </div>
+        <Button 
+          onClick={() => addToCart(product)}
+          variant="outline" 
+          className="w-full rounded-xl border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white transition-all font-semibold"
+        >
+          <Plus className="w-4 h-4 mr-2" />
+          Sewa
+        </Button>
       </div>
     </div>
   );
