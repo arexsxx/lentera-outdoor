@@ -16,10 +16,10 @@ export function WhyCard({ icon: Icon, title, description }: WhyCardProps) {
 
       {/* Text */}
       <div className="self-stretch flex flex-col justify-center items-start gap-3">
-        <h3 className="font-display text-2xl font-medium text-brand-dark-soft leading-7">
+        <h3 className="font-display text-2xl font-semibold tracking-tight text-brand-dark-soft leading-7">
           {title}
         </h3>
-        <p className="self-stretch font-body text-sm font-normal text-brand-dark leading-4 text-justify">
+        <p className="self-stretch font-body text-sm font-normal text-gray-600 leading-relaxed text-left">
           {description}
         </p>
       </div>

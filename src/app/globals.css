@@ -147,23 +147,26 @@
   }
 
   /* Typography hierarchy */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight text-foreground;
+  }
   h1 {
-    @apply font-display font-semibold tracking-tight;
+    @apply font-bold;
   }
   h2 {
-    @apply font-display font-semibold tracking-tight;
+    @apply font-bold;
   }
   h3 {
-    @apply font-display font-medium tracking-tight;
+    @apply font-semibold;
   }
   h4 {
-    @apply font-body font-semibold;
+    @apply font-semibold;
   }
   h5 {
-    @apply font-body font-medium;
+    @apply font-medium;
   }
   h6 {
-    @apply font-body font-medium;
+    @apply font-medium;
   }
   p {
     @apply font-body font-normal leading-relaxed;

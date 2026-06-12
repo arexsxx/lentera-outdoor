@@ -1,51 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { CategoryTabGroup } from "@/components/ui/category-tab";
 import { Product } from "@/data/products";
-import { Search, ArrowRight, Loader2 } from "lucide-react";
+import { Search, ArrowRight } from "lucide-react";
 import { ProductCard } from "@/components/ui/product-card";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/lib/supabase";
 
 const categories = ["All", "Backpack", "Tenda", "Sepatu", "Cook", "Emergency"];
 
-export default function ProductsSection() {
+export default function ProductsSection({ initialProducts }: { initialProducts: Product[] }) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [products, setProducts] = useState<Product[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchProducts() {
-      const { data, error } = await supabase
-        .from('products')
-        .select('*')
-        .order('id', { ascending: true });
-
-      if (error) {
-        console.error("Error fetching products:", error);
-      } else if (data) {
-        const mappedProducts: Product[] = data.map(item => ({
-          id: item.id,
-          name: item.name,
-          category: item.category as any,
-          pricePerDay: item.price_per_day,
-          description: item.description,
-          image: item.image,
-        }));
-        setProducts(mappedProducts);
-      }
-      setIsLoading(false);
-    }
-
-    fetchProducts();
-  }, []);
 
   let filtered =
     activeCategory === "All"
-      ? [...products]
-      : products.filter((p) => p.category === activeCategory);
+      ? [...initialProducts]
+      : initialProducts.filter((p) => p.category === activeCategory);
 
   if (searchQuery.trim() !== "") {
     const query = searchQuery.toLowerCase();
@@ -62,10 +33,10 @@ export default function ProductsSection() {
 
         {/* Heading */}
         <div className="flex flex-col items-center justify-center text-center mb-10 mx-auto">
-          <h2 className="max-w-[828px] text-foreground text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
+          <h2 className="max-w-[828px] text-foreground text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display leading-tight">
             Pilihan Perlengkapan Terbaik
           </h2>
-          <p className="max-w-[774px] text-[#676B6C] text-lg font-normal font-body leading-6 mt-2">
+          <p className="max-w-[774px] text-gray-500 text-lg font-normal font-body leading-relaxed mt-2">
             Siap disewa untuk menemani perjalanan alammu
           </p>
         </div>
@@ -101,16 +72,12 @@ export default function ProductsSection() {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 relative z-10">
-          {isLoading ? (
-            <div className="col-span-full py-20 flex flex-col items-center justify-center text-brand-orange">
-              <Loader2 className="w-10 h-10 animate-spin mb-4" />
-              <p className="text-gray-500 font-body">Memuat produk...</p>
-            </div>
-          ) : filtered.length > 0 ? (
-            filtered.slice(0, 8).map((product) => (
+          {filtered.length > 0 ? (
+            filtered.slice(0, 8).map((product, index) => (
               <ProductCard
                 key={product.id}
                 product={product}
+                index={index}
               />
             ))
           ) : (

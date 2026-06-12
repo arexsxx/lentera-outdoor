@@ -29,7 +29,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-white/80">
               {["Beranda", "Katalog", "Review", "About Us"].map((link) => (
                 <li key={link}>
-                  <Link href="#" className="hover:text-white transition-colors">
+                  <Link href="#" className="inline-block py-1.5 hover:text-white transition-colors">
                     {link}
                   </Link>
                 </li>
@@ -43,7 +43,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-white/80">
               {["Cara Pemesanan", "Syarat & Ketentuan", "Kebijakan Privasi", "FAQ"].map((link) => (
                 <li key={link}>
-                  <Link href="#" className="hover:text-white transition-colors">
+                  <Link href="#" className="inline-block py-1.5 hover:text-white transition-colors">
                     {link}
                   </Link>
                 </li>
@@ -55,15 +55,15 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold mb-4">Hubungi Kami</h4>
             <ul className="space-y-3 text-sm text-white/80">
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start py-1">
                 <AtSign className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                 <span>@lenteraoutdoor</span>
               </li>
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start py-1">
                 <Phone className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                 <span>+62 812-3456-7890</span>
               </li>
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start py-1">
                 <MapPin className="w-4 h-4 text-white mt-0.5 flex-shrink-0" />
                 <span>Jl. Outdoor No. 1, Bandung</span>
               </li>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import Link from "next/link";
+import { SheetDescription } from "@/components/ui/sheet";
 
 export function CartSheet() {
   const { isCartOpen, setIsCartOpen, cartItems, removeFromCart, updateQuantity } = useCart();
@@ -31,6 +32,9 @@ export function CartSheet() {
             <ShoppingBag className="w-6 h-6 text-brand-orange" />
             Keranjang Sewa
           </SheetTitle>
+          <SheetDescription className="sr-only">
+            Daftar item penyewaan Lentera Outdoor
+          </SheetDescription>
         </SheetHeader>
 
         <div className="flex-1 overflow-y-auto p-6 bg-gray-50/50">
@@ -50,7 +54,7 @@ export function CartSheet() {
               {cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4 items-center bg-white p-3 rounded-2xl border border-gray-100 shadow-sm">
                   <div className="relative w-20 h-20 bg-gray-50 rounded-xl overflow-hidden flex-shrink-0">
-                    <Image src={item.image} alt={item.name} fill className="object-contain p-2" />
+                    <Image src={item.image} alt={item.name} fill sizes="80px" className="object-contain p-2" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-semibold text-brand-dark-soft text-sm md:text-base leading-tight truncate">{item.name}</h4>

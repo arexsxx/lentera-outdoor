@@ -5,16 +5,25 @@ import { Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ProductCardProps {
   product: Product;
+  index?: number;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, index = 0 }: ProductCardProps) {
   const { addToCart } = useCart();
 
   return (
-    <div className="w-full h-full p-4 bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-brand-orange/30 rounded-[20px] flex flex-col justify-between items-center gap-4 transition-all duration-300 relative group">
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-20px" }}
+      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+      className="w-full h-full p-4 bg-white border border-gray-100 shadow-sm hover:shadow-xl hover:border-brand-orange/30 rounded-[20px] flex flex-col justify-between items-center gap-4 transition-colors duration-300 relative group"
+    >
       <div className="self-stretch flex flex-col justify-center items-center gap-3">
         <div className="group/img relative w-full aspect-square max-w-[224px] overflow-hidden">
           <Image
@@ -41,12 +50,12 @@ export function ProductCard({ product }: ProductCardProps) {
         <Button 
           onClick={() => addToCart(product)}
           variant="outline" 
-          className="w-full rounded-xl border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white transition-all font-semibold"
+          className="w-full h-11 rounded-xl border-brand-orange text-brand-orange hover:bg-brand-orange hover:text-white transition-all font-semibold"
         >
           <Plus className="w-4 h-4 mr-2" />
           Sewa
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 }

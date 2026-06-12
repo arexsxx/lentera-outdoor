@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { Package, Sparkles, Clock, Star } from "lucide-react";
 import { WhyCard } from "@/components/ui/why-card";
 import { AbstractBackground } from "@/components/ui/abstract-background";
+import { motion, Variants } from "framer-motion";
 
 const features = [
   {
@@ -26,6 +29,19 @@ const features = [
   },
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
+
 export default function WhyUsSection() {
   return (
     <section className="relative py-16 bg-white overflow-hidden">
@@ -34,47 +50,52 @@ export default function WhyUsSection() {
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
 
           {/* Gambar Kiri */}
-          <div className="group relative w-full lg:w-[518px] aspect-[4/5] lg:h-[668px] rounded-[20px] overflow-hidden bg-gray-200 lg:-ml-[56px] flex-shrink-0 shadow-lg">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="group relative w-full lg:w-[518px] aspect-[4/5] lg:h-[668px] rounded-[20px] overflow-hidden bg-gray-200 lg:-ml-[56px] flex-shrink-0 shadow-lg"
+          >
             <Image
               src="/images/whyimg.jpg"
               alt="Kenapa Memilih Lentera Outdoor"
               fill
-              sizes="518px"
+              sizes="(max-width: 1024px) 100vw, 518px"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
-          </div>
+          </motion.div>
 
           {/* Konten Kanan */}
-          <div className="flex-1 min-w-0 flex flex-col justify-start gap-14">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            className="flex-1 min-w-0 flex flex-col justify-start gap-14"
+          >
 
             {/* Header */}
-            <div className="flex flex-col gap-3 text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
+            <motion.div variants={itemVariants} className="flex flex-col gap-3 text-center lg:text-left">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display leading-tight">
                 Kenapa Memilih Lentera Outdoor?
               </h2>
-              <p className="text-[#676B6C] text-xl font-normal font-body leading-6">
+              <p className="text-gray-500 text-xl font-normal font-body leading-relaxed">
                 Peralatan terawat dan layanan terpercaya kami siap membuat setiap
                 perjalanan alammu lebih aman, nyaman, dan berkesan.
               </p>
-            </div>
+            </motion.div>
 
             {/* Cards */}
-            <div className="flex flex-col gap-11">
-              {/* Baris 1 */}
-              <div className="flex gap-11">
-                {features.slice(0, 2).map((f) => (
-                  <WhyCard key={f.title} icon={f.icon} title={f.title} description={f.desc} />
-                ))}
-              </div>
-              {/* Baris 2 */}
-              <div className="flex gap-11">
-                {features.slice(2, 4).map((f) => (
-                  <WhyCard key={f.title} icon={f.icon} title={f.title} description={f.desc} />
-                ))}
-              </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-11">
+              {features.map((f) => (
+                <motion.div variants={itemVariants} key={f.title} className="flex h-full">
+                  <WhyCard icon={f.icon} title={f.title} description={f.desc} />
+                </motion.div>
+              ))}
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
       </div>
