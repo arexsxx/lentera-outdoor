@@ -44,10 +44,10 @@ const itemVariants: Variants = {
 
 export default function WhyUsSection() {
   return (
-    <section className="relative py-16 bg-white overflow-hidden">
-      <AbstractBackground />
+    <section className="relative py-8 md:py-16 bg-white overflow-hidden">
+
       <div className="relative z-10 mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px]">
-        <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-stretch gap-6 md:gap-8 lg:gap-12">
 
           {/* Gambar Kiri */}
           <motion.div 
@@ -55,13 +55,13 @@ export default function WhyUsSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="group relative w-full lg:w-[518px] aspect-[4/5] lg:h-[668px] rounded-[20px] overflow-hidden bg-gray-200 lg:-ml-[56px] flex-shrink-0 shadow-lg"
+            className="group relative w-full lg:w-[480px] h-[300px] md:h-[400px] lg:h-auto rounded-[20px] overflow-hidden bg-gray-200 lg:-ml-[56px] flex-shrink-0 shadow-lg"
           >
             <Image
               src="/images/whyimg.jpg"
               alt="Kenapa Memilih Lentera Outdoor"
               fill
-              sizes="(max-width: 1024px) 100vw, 518px"
+              sizes="(max-width: 1024px) 100vw, 480px"
               className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           </motion.div>
@@ -72,15 +72,16 @@ export default function WhyUsSection() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="flex-1 min-w-0 flex flex-col justify-start gap-14"
+            className="flex-1 min-w-0 flex flex-col justify-center gap-14 py-4 lg:py-8"
           >
 
             {/* Header */}
-            <motion.div variants={itemVariants} className="flex flex-col gap-3 text-center lg:text-left">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight font-display leading-tight">
-                Kenapa Memilih Lentera Outdoor?
+            <motion.div variants={itemVariants} className="flex flex-col gap-4 text-center lg:text-left mb-4">
+              <h2 className="text-4xl md:text-5xl font-display text-brand-dark-soft tracking-tight leading-tight">
+                <span className="font-medium">Kenapa Memilih</span><br />
+                <span className="font-bold">Lentera Outdoor?</span>
               </h2>
-              <p className="text-gray-500 text-xl font-normal font-body leading-relaxed">
+              <p className="text-gray-500 text-base md:text-lg font-body leading-relaxed">
                 Peralatan terawat dan layanan terpercaya kami siap membuat setiap
                 perjalanan alammu lebih aman, nyaman, dan berkesan.
               </p>

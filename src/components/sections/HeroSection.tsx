@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { AbstractBackground } from "@/components/ui/abstract-background";
 import { useCart } from "@/context/CartContext";
-import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
+import { motion, useScroll, useTransform, useMotionValue } from "framer-motion";
 
 export default function HeroSection() {
   const { setIsCartOpen } = useCart();
@@ -17,24 +17,22 @@ export default function HeroSection() {
     setIsClient(true);
   }, []);
 
-  // Scroll parallax using framer-motion (no re-renders!)
+  // 1. LIGHTWEIGHT SCROLL PARALLAX (Tanpa fisika useSpring yang berat)
   const { scrollY } = useScroll();
-  const smoothScrollY = useSpring(scrollY, { stiffness: 100, damping: 30, restDelta: 0.001 });
   
-  const headingY = useTransform(smoothScrollY, [0, 1000], [0, 400]);
-  const cardY = useTransform(smoothScrollY, [0, 1000], [0, 150]);
-  const personScrollY = useTransform(smoothScrollY, [0, 1000], [0, -50]);
+  // Mengikuti scroll secara linier langsung ke GPU (0 overhead)
+  const headingY = useTransform(scrollY, [0, 1000], [0, 300]);
+  const cardY = useTransform(scrollY, [0, 1000], [0, 120]);
+  const personScrollY = useTransform(scrollY, [0, 1000], [0, -40]);
 
-  // Mouse parallax using framer-motion
+  // 2. LIGHTWEIGHT MOUSE PARALLAX (Tanpa perhitungan fisika)
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const smoothMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const smoothMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isClient) return;
-    const x = (e.clientX / window.innerWidth - 0.5) * 30;
-    const y = (e.clientY / window.innerHeight - 0.5) * 30;
+    const x = (e.clientX / window.innerWidth - 0.5) * 15; 
+    const y = (e.clientY / window.innerHeight - 0.5) * 15;
     mouseX.set(x);
     mouseY.set(y);
   };
@@ -63,7 +61,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="absolute top-20 md:top-24 left-0 right-0 text-center z-10 pointer-events-none"
+          className="absolute top-20 md:top-24 left-0 right-0 text-center z-10 pointer-events-none will-change-transform"
         >
           <motion.div style={{ y: headingY }}>
             <h1
@@ -82,7 +80,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="absolute bottom-0 left-4 right-4 lg:left-8 lg:right-8 z-20 min-h-[300px] h-[45vh] max-h-[400px] md:min-h-[280px] md:h-[45vh] md:max-h-[500px]"
+          className="absolute bottom-0 left-4 right-4 lg:left-8 lg:right-8 z-20 min-h-[300px] h-[45vh] max-h-[400px] md:min-h-[280px] md:h-[45vh] md:max-h-[500px] will-change-transform"
         >
           <motion.div className="w-full h-full" style={{ y: cardY }}>
             <div className="relative w-full h-full rounded-t-3xl overflow-hidden shadow-[0_0_40px_rgba(255,91,4,0.1)] border-t border-white/50">
@@ -93,6 +91,7 @@ export default function HeroSection() {
                 sizes="(max-width: 768px) 100vw, 90vw"
                 className="object-cover object-center"
                 priority
+                unoptimized
               />
               {/* subtle scrim */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
@@ -105,10 +104,10 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 150 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="absolute inset-0 z-30 pointer-events-none flex justify-center"
+          className="absolute inset-0 z-30 pointer-events-none flex justify-center will-change-transform"
         >
           <motion.div
-            style={{ x: smoothMouseX, y: smoothMouseY }}
+            style={{ x: mouseX, y: mouseY }}
             className="shrink-0 mt-8 md:-mt-10"
           >
             <motion.div
@@ -126,27 +125,23 @@ export default function HeroSection() {
                 sizes="(max-width: 768px) 150vw, 100vw"
                 className="object-contain object-top" 
                 priority
+                unoptimized
               />
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* 4. BUTTONS — z-40, behind navbar but in front of hero elements */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
           className="absolute left-0 right-0 flex flex-wrap justify-center gap-4 md:gap-6 z-40 bottom-[25vh] md:bottom-[30vh]"
         >
-          <Button asChild variant="secondary" className="rounded-full font-bold bg-white/80 backdrop-blur-md border border-white/50 hover:bg-white text-brand-orange-dark shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.15)] transition-all px-8 h-14 text-base md:text-lg">
+          <Button asChild variant="gradient" size="lg">
             <Link href="/catalog">
-              <BookOpen data-icon="inline-start" className="w-5 h-5" />
-              Lihat Katalog
+              Mulai Sewa
+              <ArrowRight data-icon="inline-end" className="w-5 h-5 ml-2" />
             </Link>
-          </Button>
-          <Button onClick={() => setIsCartOpen(true)} className="rounded-full font-bold bg-gradient-to-r from-brand-orange to-brand-orange-dark hover:from-brand-orange-dark hover:to-brand-orange text-white shadow-[0_8px_30px_rgba(255,91,4,0.4)] hover:shadow-[0_12px_40px_rgba(255,91,4,0.6)] hover:-translate-y-1 transition-all px-8 h-14 text-base md:text-lg border border-brand-orange/50">
-            Mulai Sewa
-            <ArrowRight data-icon="inline-end" className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>
 

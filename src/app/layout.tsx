@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
 import { CartSheet } from "@/components/layout/CartSheet";
+import { AuthProvider } from "@/context/AuthContext";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -18,7 +19,8 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   title: "Lentera Outdoor — Sewa Perlengkapan Outdoor",
-  description: "Sewa tenda, backpack, sepatu, dan perlengkapan outdoor terlengkap. Siap menemani setiap perjalanan alammu.",
+  description:
+    "Sewa tenda, backpack, sepatu, dan perlengkapan outdoor terlengkap. Siap menemani setiap perjalanan alammu.",
 };
 
 export default function RootLayout({
@@ -27,14 +29,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${plusJakartaSans.variable} ${outfit.variable} antialiased`}>
+    <html
+      lang="id"
+      className={`${plusJakartaSans.variable} ${outfit.variable} antialiased`}
+    >
       <body className="min-h-full flex flex-col font-body">
-        <CartProvider>
-          <Navbar />
-          {children}
-          <Footer />
-          <CartSheet />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <CartSheet />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

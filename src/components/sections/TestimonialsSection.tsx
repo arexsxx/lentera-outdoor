@@ -22,8 +22,8 @@ export default function TestimonialsSection() {
   );
 
   return (
-    <section className="relative py-20 bg-white overflow-hidden">
-      <AbstractBackground />
+    <section className="relative py-8 md:py-16 bg-white overflow-hidden">
+
       
       {/* Inline Styles untuk animasi Infinite Scroll Marquee */}
       <style>{`
@@ -42,12 +42,13 @@ export default function TestimonialsSection() {
 
       <div className="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-[56px] relative">
         {/* Heading disesuaikan dengan gaya ProductsSection */}
-        <div className="flex flex-col items-center justify-center text-center mb-10 mx-auto">
-          <h2 className="max-w-[828px] text-foreground text-3xl md:text-4xl lg:text-5xl font-medium font-display leading-tight">
-            Apa kata sobat Lentera
+        <div className="flex flex-col items-center justify-center text-center mb-12 mx-auto">
+          <h2 className="text-4xl md:text-5xl font-display text-brand-dark-soft tracking-tight mb-4 leading-tight">
+            <span className="font-medium">Pengalaman Nyata</span><br />
+            <span className="font-bold">Sobat Lentera</span>
           </h2>
-          <p className="max-w-[774px] text-[#676B6C] text-lg font-normal font-body leading-6 mt-2">
-            Dipercaya oleh para pendaki dan keluarga untuk merasakan momen terbaik di alam.
+          <p className="text-gray-500 text-base md:text-lg font-body max-w-2xl">
+            Dipercaya oleh ribuan pendaki dan keluarga untuk merasakan momen terbaik di alam.
           </p>
         </div>
       </div>
@@ -66,7 +67,7 @@ export default function TestimonialsSection() {
 
       {/* Call to Action (CTA) */}
       <div className="flex justify-center mt-6">
-        <Button size="lg" className="gap-2 rounded-full px-8" asChild>
+        <Button variant="default" asChild>
           <a 
             href="https://www.google.com/maps/search/?api=1&query=Lentera+Outdoor+Krandang+Kediri" 
             target="_blank" 
